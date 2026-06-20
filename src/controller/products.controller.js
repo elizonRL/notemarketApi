@@ -5,17 +5,16 @@ const products = [
 ]
 
 
-const getAllProducts = (req, res) => {
-  res.send(products)
+const getAllProducts = () => {
+  return products
 }
 
-const getProductById = (req, res) => {
-  const { id } = req.params
-  const product = products.find(p => p.id === parseInt(id))
-  if (!product) {
-    return res.status(404).send('Product not found')
-  }
-  res.send(product)
+const getProductById = (id) => {
+  return products.find(p => p.id === parseInt(id))
 }
 
-module.exports = { getAllProducts, getProductById }
+const deleteProductById = (id) => {
+  return products.filter(p => p.id !== parseInt(id))
+}
+
+module.exports = { getAllProducts, getProductById, deleteProductById }

@@ -8,9 +8,20 @@ const { getAllProducts, getProductById } = require('../controller/products.contr
 */
 
 
-productRouter.get('/', getAllProducts)
+productRouter.get('/',(req, res)=> {
+  const products = getAllProducts()
+  res.send(products)
+})
 
-productRouter.get('/:id', getProductById)
+productRouter.get('/:id', (req, res) => {
+  const { id } = req.params
+  const product = getProductById(id)
+  if (!product) {
+    return res.status(404).send('Product not found')
+  }
+  res.send(product)
+})
+
 
 productRouter.post('/', (req, res) => {
   res.send('Crear un nuevo producto')
