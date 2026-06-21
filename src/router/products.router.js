@@ -1,14 +1,16 @@
 const productRouter = require('express').Router()
-const { getAllProducts, getProductById } = require('../controller/products.controller')
+const {
+  getAllProducts,
+  getProductById,
+} = require('../controller/products.controller')
 /**
-* Router para gestionar productos.
-* @summary Implementa las rutas para la gestión de productos.
-* @param {Object} req, res - Objetos de solicitud y respuesta.
-* @return {Object} productos.
-*/
+ * Router para gestionar productos.
+ * @summary Implementa las rutas para la gestión de productos.
+ * @param {Object} req, res - Objetos de solicitud y respuesta.
+ * @return {Object} productos.
+ */
 
-
-productRouter.get('/',(req, res)=> {
+productRouter.get('/', (req, res) => {
   const products = getAllProducts()
   res.send(products)
 })
@@ -21,7 +23,6 @@ productRouter.get('/:id', (req, res) => {
   }
   res.send(product)
 })
-
 
 productRouter.post('/', (req, res) => {
   res.send('Crear un nuevo producto')
